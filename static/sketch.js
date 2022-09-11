@@ -143,9 +143,9 @@ function draw() {
             {
                 // obstacles = [[269,325],[269,320],[264,300],[264,307]]
                 obstacles.push(createVector(269,325));
-                obstacles.push(createVector(269,300));
-                obstacles.push(createVector(250,325));
-                obstacles.push(createVector(250,300));
+                // obstacles.push(createVector(269,300));
+                // obstacles.push(createVector(250,325));
+                // obstacles.push(createVector(250,300));
                 // obstacles.push(createVector(mouseX,mouseY));
                 console.log(obstacles)
             }
