@@ -10,10 +10,12 @@ class boids
             this.maxSpeed=6;
             this.maxForce=0.3;
 
-            this.radius=10;//random(5,12);
+            this.radius=10+10;//random(5,12);
             this.R=random(100,255);
             this.G=random(100,255);
             this.B=random(100,255);
+
+            this.img = loadImage('./static/space_invader.png');
         }
 
         align(birds,af)
@@ -163,7 +165,8 @@ class boids
             stroke(this.R,this.G,this.B);
             strokeWeight(this.radius);
             if(choicepoint===0)
-                point(this.position.x,this.position.y);
+                // point(this.position.x,this.position.y);
+                image(this.img,this.position.x,this.position.y, this.radius,this.radius);
             else
                 {
                     let v=createVector();

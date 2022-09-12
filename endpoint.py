@@ -2,11 +2,7 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
-messages = [{'title': 'Message One',
-             'content': 'Message One Content'},
-            {'title': 'Message Two',
-             'content': 'Message Two Content'}
-            ]
+messages = [{'points': [[269,350],[269,300],[300,350],[300,300]]}]
 
 @app.route('/pose')
 def pose():

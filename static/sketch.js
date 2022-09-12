@@ -13,6 +13,11 @@ var pointornot='POINTS';
 let s1,s2,s3;
 let walls=[];
 let obstacles=[];
+var i=0
+
+// api url
+const api_url = "http://127.0.0.1:5008/pose";
+
 function setup() {
   // put setup code here
 
@@ -108,6 +113,22 @@ function mousePressed()
     obstacles=[];
 }
 
+
+// // Defining async function
+// async function getapi(url) {
+    
+//     // Storing response
+//     const response = await fetch(url);
+    
+//     // Storing data in form of JSON
+//     var data = await response.json();
+//     console.log(data);
+//     if (response) {
+//         hideloader();
+//     }
+//     show(data);
+// }
+
 function draw() {
   // put drawing code here
     background(0,0,0);
@@ -139,16 +160,26 @@ function draw() {
         }
     if(choicedraw===1)
         {
-            if(mouseIsPressed===true)
-            {
-                // obstacles = [[269,325],[269,320],[264,300],[264,307]]
-                obstacles.push(createVector(269,325));
-                // obstacles.push(createVector(269,300));
-                // obstacles.push(createVector(250,325));
-                // obstacles.push(createVector(250,300));
-                // obstacles.push(createVector(mouseX,mouseY));
-                console.log(obstacles)
-            }
+ 
+            i+=1
+            // Storing response
+            // var response = fetch(api_url);
+            
+            // // Storing data in form of JSON
+            // var data = response.json();
+            // console.log(response);
+            // obstacles = [[269,325],[269,320],[264,300],[264,307]]
+            obstacles.push(createVector(269,350));
+            obstacles.push(createVector(269,300));
+            obstacles.push(createVector(300,350));
+            obstacles.push(createVector(300,300));
+            obstacles.push(createVector(350,350));
+            obstacles.push(createVector(350,300));
+            // obstacles.push(createVector(250,325));
+            // obstacles.push(createVector(250,300));
+            // obstacles.push(createVector(mouseX,mouseY));
+            console.log(obstacles)
+
         }
 
 
@@ -156,6 +187,7 @@ function draw() {
     beginShape();
     for(let pt of obstacles)
         {
+            //TODO: draw a space invader icon (replace w/ vertex)
             vertex(pt.x,pt.y);
         }
     endShape();
