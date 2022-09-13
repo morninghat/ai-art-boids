@@ -123,7 +123,7 @@ class boids
 
         repulseobstacles(walls) //reppels walls ie: array with every obstacle point added and repelled with EXTRA force that boid-boid repusion
         {
-            let perceptionRadius=30;
+            let perceptionRadius=100; //30
             let acc=createVector();
             let ctr=0;
             if(walls.length==0)

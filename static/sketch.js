@@ -22,6 +22,8 @@ function setup() {
   // put setup code here
 
     createCanvas(windowWidth,windowHeight);
+    console.log(windowWidth)
+    console.log(windowHeight)
     for(let i=0;i<120;i++)
         flock.push(new boids());
 
@@ -160,6 +162,7 @@ function draw() {
         }
     if(choicedraw===1)
         {
+            obstacles = []
  
             i+=1
             // Storing response
@@ -169,12 +172,27 @@ function draw() {
             // var data = response.json();
             // console.log(response);
             // obstacles = [[269,325],[269,320],[264,300],[264,307]]
-            obstacles.push(createVector(269,350));
-            obstacles.push(createVector(269,300));
-            obstacles.push(createVector(300,350));
-            obstacles.push(createVector(300,300));
-            obstacles.push(createVector(350,350));
+            // obstacles.push(createVector(269+i,350));
+            // obstacles.push(createVector(269+i,300));
+            // obstacles.push(createVector(300+i,350));
+            // obstacles.push(createVector(300+i,300));
+            // obstacles.push(createVector(350+i,350));
+            // obstacles.push(createVector(350+i,300));
+
             obstacles.push(createVector(350,300));
+            obstacles.push(createVector(450,300));
+            obstacles.push(createVector(450,400));
+            obstacles.push(createVector(350,400));
+            obstacles.push(createVector(350,300));
+
+            // obstacles.push(createVector(760,559));
+            // obstacles.push(createVector(629,556));
+            // obstacles.push(createVector(653,376));
+            // obstacles.push(createVector(586,376));
+            // obstacles.push(createVector(754,380));
+            // obstacles.push(createVector(882,384));
+            // obstacles.push(createVector(270,1034));
+            // obstacles.push(createVector(1124,1001));
             // obstacles.push(createVector(250,325));
             // obstacles.push(createVector(250,300));
             // obstacles.push(createVector(mouseX,mouseY));
