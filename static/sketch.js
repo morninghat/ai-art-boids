@@ -120,103 +120,70 @@ function mousePressed()
 
 
 // // Defining async function
-// async function getapi(url) {
+async function getapi() {
     
-//     // Storing response
-//     const response = await fetch(url);
+    // Storing response
+    const response = await fetch(api_url);
     
-//     // Storing data in form of JSON
-//     var data = await response.json();
-//     console.log(data);
-//     if (response) {
-//         hideloader();
-//     }
-//     show(data);
-// }
+    // Storing data in form of JSON
+    var data = await response.json();
+    return data;
+}
 
-function draw() {
-  // put drawing code here
-    background(0,0,0);
-
-    textSize(15);
-    fill(255,0,0);
-    strokeWeight(4);
-    stroke(255);
-    text('alignment', 10, 40);
-    text('cohesion', 160, 40);
-    text('repulsion', 320, 40);
-    text(drawornot,90,70);
-    text(wallsornot,90,100);
-    text(pointornot,90,130);
-
-    for(let b of flock)
-        {
-            b.align(flock);
-            if(choicewalls===1)
-                {
-                    b.repulsewalls(walls);
-                }
-            b.repulseobstacles(obstacles);
-            b.cohese(flock);
-            b.repulse(flock);
-            b.move();
-            b.stayOnScreen();
-            b.show();
-        }
-    if(choicedraw===1)
-        {
-            obstacles = []
- 
-            i+=1
-            // Storing response
-            fetch(api_url)
-            .then(response => response.json())
-            .then(json => {
-                console.log(json);
-            })
-
-            // // Storing data in form of JSON
-            // var data = response.json();
-            // console.log("start");
-            // console.log(response);
-            // console.log("end");
-            // obstacles = [[269,325],[269,320],[264,300],[264,307]]
-            // obstacles.push(createVector(269+i,350));
-            // obstacles.push(createVector(269+i,300));
-            // obstacles.push(createVector(300+i,350));
-            // obstacles.push(createVector(300+i,300));
-            // obstacles.push(createVector(350+i,350));
-            // obstacles.push(createVector(350+i,300));
-
-            // obstacles.push(createVector(350,300));
-            // obstacles.push(createVector(450,300));
-            // obstacles.push(createVector(450,400));
-            // obstacles.push(createVector(350,400));
-            // obstacles.push(createVector(350,300));
-
-            // obstacles.push(createVector(760,559));
-            // obstacles.push(createVector(629,556));
-            // obstacles.push(createVector(653,376));
-            // obstacles.push(createVector(586,376));
-            // obstacles.push(createVector(754,380));
-            // obstacles.push(createVector(882,384));
-            // obstacles.push(createVector(270,1034));
-            // obstacles.push(createVector(1124,1001));
-            // obstacles.push(createVector(250,325));
-            // obstacles.push(createVector(250,300));
-            // obstacles.push(createVector(mouseX,mouseY));
-            // console.log(obstacles)
-
-        }
+async function draw() {
+    getapi().then(
+                value => { 
+                    // console.log("Value: " + value);
+                    obstacles = [];
+                    for (let i = 0; i < value.points.length; i++) {
+                        obstacles.push(createVector(value.points[i][0], value.points[i][1]));
+                    }
 
 
-    noFill();
-    beginShape();
-    for(let pt of obstacles)
-        {
-            //TODO: draw a space invader icon (replace w/ vertex)
-            vertex(pt.x,pt.y);
-        }
-    endShape();
+                    // EVERYTHING ELSE
+                    // put drawing code here
+                    background(0,0,0);
 
+                    textSize(15);
+                    fill(255,0,0);
+                    strokeWeight(4);
+                    stroke(255);
+                    text('alignment', 10, 40);
+                    text('cohesion', 160, 40);
+                    text('repulsion', 320, 40);
+                    text(drawornot,90,70);
+                    text(wallsornot,90,100);
+                    text(pointornot,90,130);
+
+                    for(let b of flock)
+                        {
+                            b.align(flock);
+                            if(choicewalls===1)
+                                {
+                                    b.repulsewalls(walls);
+                                }
+                            b.repulseobstacles(obstacles);
+                            b.cohese(flock);
+                            b.repulse(flock);
+                            b.move();
+                            b.stayOnScreen();
+                            b.show();
+                        }
+
+                    noFill();
+                    beginShape();
+                    for(let pt of obstacles)
+                        {
+                            //TODO: draw a space invader icon (replace w/ vertex)
+                            vertex(pt.x,pt.y);
+                            // console.log("Vertex: " + pt.x + ", " + pt.y);
+                        }
+                    endShape();
+
+
+                 },
+                error => { console.log("Error: " + error) }
+                );
+
+  
 }
