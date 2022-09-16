@@ -13,5 +13,7 @@ def index():
     return render_template('index.html')
 
 if __name__=="__main__":
+    print("START RUN");
     app.run(debug=True, port = 5008, host = "0.0.0.0")
+    print("END RUN");
 

@@ -18,7 +18,8 @@ let obstacles=[];
 var i=0
 
 // api url
-const api_url = "http://127.0.0.1:5008/pose";
+const api_url = 'http://10.132.197.13:5000/points';
+// const api_url = 'http://127.0.0.1:5000/points';
 
 function setup() {
   // put setup code here
@@ -168,11 +169,17 @@ function draw() {
  
             i+=1
             // Storing response
-            // var response = fetch(api_url);
-            
+            fetch(api_url)
+            .then(response => response.json())
+            .then(json => {
+                console.log(json);
+            })
+
             // // Storing data in form of JSON
             // var data = response.json();
+            // console.log("start");
             // console.log(response);
+            // console.log("end");
             // obstacles = [[269,325],[269,320],[264,300],[264,307]]
             // obstacles.push(createVector(269+i,350));
             // obstacles.push(createVector(269+i,300));
@@ -181,11 +188,11 @@ function draw() {
             // obstacles.push(createVector(350+i,350));
             // obstacles.push(createVector(350+i,300));
 
-            obstacles.push(createVector(350,300));
-            obstacles.push(createVector(450,300));
-            obstacles.push(createVector(450,400));
-            obstacles.push(createVector(350,400));
-            obstacles.push(createVector(350,300));
+            // obstacles.push(createVector(350,300));
+            // obstacles.push(createVector(450,300));
+            // obstacles.push(createVector(450,400));
+            // obstacles.push(createVector(350,400));
+            // obstacles.push(createVector(350,300));
 
             // obstacles.push(createVector(760,559));
             // obstacles.push(createVector(629,556));
@@ -198,7 +205,7 @@ function draw() {
             // obstacles.push(createVector(250,325));
             // obstacles.push(createVector(250,300));
             // obstacles.push(createVector(mouseX,mouseY));
-            console.log(obstacles)
+            // console.log(obstacles)
 
         }
 
